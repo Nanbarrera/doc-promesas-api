@@ -37,6 +37,15 @@ Promise.race([promesa1, promesa2])
   });
 // Resultado: "Promesa 2 completada"
 ```
+**Explicación:**
+- Este código crea dos promesas (```promesa1``` y ```promesa2```), que se resuelven en 2000 ms y 1000 ms respectivamente.
+- ```Promise.race``` se utiliza para ejecutar ambas promesas en paralelo, pero solo la primera promesa que se complete será la que determine el resultado.
+- En este caso, ```promesa2``` se completa primero (en 1000 ms), por lo que ```Promise.race``` devolverá el resultado de ```promesa2```.
+
+**Resultado:**
+```
+Promesa 2 completada
+```
 
 ### Ejercicio 2: Manejo de rechazos
 Muestra cómo manejar el rechazo de la primera promesa que se complete.
@@ -52,8 +61,17 @@ Promise.race([promesaExitosa, promesaFallida])
     console.log(error); // Resultado: "Error"
   });
 // Resultado: "Error"
-
 ```
+**Explicación:**
+- Se crean dos promesas: una (```promesaExitosa```) se resuelve con éxito en 1000 ms, y la otra (```promesaFallida```) se rechaza con un error en 500 ms.
+
+- ```Promise.race``` devolverá el primer resultado, ya sea éxito o fallo. Como ```promesaFallida``` se rechaza primero, el bloque ```catch``` manejará el error.
+
+**Resultado:**
+```
+Error
+```
+
 
 ### Ejercicio 3: Simulando tareas asincrónicas
 Simula tareas con diferentes tiempos de retraso y usa ```Promise.race```.
@@ -73,6 +91,16 @@ Promise.race([
 });
 // Resultado: "Tarea 2 completada"
 ```
+**Explicación:**
+- El código define una función ```retrasar``` que simula una tarea asincrónica que se resuelve después de un cierto retraso.
+- Tres promesas se ejecutan con retrasos diferentes (3000 ms, 1000 ms, y 2000 ms).
+- ```Promise.race``` devolverá el resultado de la promesa que se complete primero, que en este caso es la tarea con 1000 ms de retraso.
+
+**Resultado:**
+```
+Tarea 2 completada
+```
+
 
 ### Ejercicio 4: Usando con la API fetch
 Ejecuta varias solicitudes a una API y actúa según la primera respuesta.
@@ -91,6 +119,13 @@ Promise.race([obtenerUsuario(), obtenerPublicaciones()])
   });
 // Muestra el resultado de la primera respuesta
 ```
+**Explicación:**
+- El código realiza dos solicitudes ```fetch``` en paralelo: una para obtener un usuario y otra para obtener las publicaciones de ese usuario.
+- ```Promise.race``` devolverá la primera respuesta que se complete entre las dos. Dependiendo de la velocidad del servidor o red, podría ser cualquiera de las dos.
+
+**Resultado:**
+
+Dependerá de cuál de las dos promesas se resuelva primero. Puede ser el usuario o las publicaciones.
 
 ### Ejercicio 5: Combinación de múltiples promesas
 Ejecuta varias promesas y muestra cómo ```Promise.race``` se comporta con varias combinaciones.
@@ -107,6 +142,14 @@ Promise.race([promesa1, promesa2, promesa3])
     console.log(error); // Este bloque no se ejecutará
   });
 // Resultado: "Resultado 1"
+```
+**Explicación:**
+- Se crean tres promesas. La primera (```promesa1```) se resuelve de inmediato, la segunda tiene un retraso de 2000 ms, y la tercera se rechaza después de 1000 ms.
+- Como ```promesa1``` se resuelve de inmediato, será el resultado devuelto por ```Promise.race```.
+
+**Resultado:**
+```
+Resultado 1
 ```
 
 ### Ejercicio 6: Timeout con promesas
@@ -129,6 +172,15 @@ Promise.race([tarea, timeout(1500)])
   });
 // Resultado: "Tiempo agotado"
 ```
+**Explicación:**
+- Se crea una función ```timeout``` que rechaza una promesa después de un tiempo determinado.
+- Se crea otra promesa ```tarea``` que se resuelve en 2000 ms. Sin embargo, como el timeout se ejecuta después de 1500 ms, la promesa será rechazada antes de que tarea se resuelva.
+- ```Promise.race``` devuelve el error del timeout porque ocurre primero.
+
+**Resultado:**
+```
+Tiempo agotado
+```
 
 ### Ejercicio 7: Combinando resultados y errores
 Ejecuta varias promesas y maneja el resultado de la primera que complete.
@@ -144,6 +196,14 @@ Promise.race([promesa1, promesa2])
     console.log(error); // Este bloque no se ejecutará
   });
 // Resultado: "Primera"
+```
+**Explicación:**
+- Este código utiliza dos promesas: la primera (```promesa1```) se resuelve después de 1500 ms, mientras que la segunda (```promesa2```) se rechaza después de 1000 ms.
+- Dado que ```promesa2``` se rechaza primero, se manejará ese error en el bloque catch. Sin embargo, en este caso, el código ejecuta ```promesa1``` primero, por lo que se resuelve con éxito.
+
+**Resultado:**
+```
+Primera
 ```
 
 ### Ejercicio 8: Varios retrasos
@@ -161,5 +221,14 @@ Promise.race(tareas)
   });
 // Resultado: "Tarea C"
 ```
+**Explicación:**
+- Se ejecutan tres promesas con diferentes tiempos de retraso (3000 ms, 2000 ms, y 1000 ms).
+- ```Promise.race``` devolverá el resultado de la promesa que se complete primero, en este caso la que tiene un retraso de 1000 ms (```area C```).
+
+**Resultado:**
+```
+Tarea C
+```
+
 ## Conclusión
 ```Promise.race``` es una herramienta poderosa para manejar múltiples promesas, permitiendo continuar con el primer resultado disponible, ya sea un éxito o un error. Esto proporciona flexibilidad y eficiencia en situaciones donde el tiempo es crítico. Los ejemplos ilustran su uso en una variedad de contextos, desde simulaciones simples hasta interacciones con APIs, ayudando a comprender mejor su funcionamiento y aplicaciones prácticas.

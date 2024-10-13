@@ -43,6 +43,16 @@ fetch('https://jsonplaceholder.typicode.com/posts', {
 
 // Resultado: Muestra el nuevo post con un ID asignado.
 ```
+**Explicación:**
+- Se crea un objeto ```newPost``` que contiene el título, el cuerpo y el ID del usuario.
+- Se utiliza la función ```fetch()``` para enviar una solicitud POST a la URL ```https://jsonplaceholder.typicode.com/posts```.
+- En la configuración de la solicitud, se especifica el método ```POST```, los encabezados (indicando que el contenido es de tipo JSON) y se convierte el objeto ```newPost``` en una cadena JSON con ```JSON.stringify()```.
+- La respuesta se convierte a JSON y se muestra en la consola. Si ocurre un error, se captura y se muestra un mensaje de error.
+
+**Resultado:** 
+```
+La consola mostrará el nuevo post creado, que incluirá un ID asignado automáticamente.
+```
 
 ### Ejercicio 2: Manejo de errores en POST
 Realiza una solicitud POST y maneja posibles errores, mostrando un mensaje en la consola.
@@ -70,6 +80,17 @@ fetch('https://jsonplaceholder.typicode.com/posts', {
 
 // Resultado: Muestra "Error: Error al crear el post" en caso de error.
 ```
+**Explicación:**
+- Se crea un objeto ```invalidPost``` que omite el campo ```body```, lo que resulta en un error de validación.
+- Se realiza una solicitud POST como en el ejercicio anterior.
+- Se verifica si la respuesta es exitosa (```response.ok```). Si no lo es, se lanza un error con un mensaje.
+- Si la respuesta es exitosa, se convierte a JSON y se muestra en la consola.
+- Los errores se capturan y se muestran.
+
+**Resultado:**
+```
+Si el post no se crea debido a un error, la consola mostrará "Error: Error al crear el post".
+```
 
 ### Ejercicio 3: Crear múltiples posts en un bucle
 Usa un bucle para crear múltiples posts con datos diferentes.
@@ -93,6 +114,15 @@ posts.forEach(post => {
 });
 
 // Resultado: Muestra los objetos de los posts creados en la consola.
+```
+**Explicación:**
+- Se define un array ```posts``` con varios objetos de post.
+- Se utiliza ```forEach``` para iterar sobre cada post y realizar una solicitud POST para cada uno.
+- Cada solicitud se maneja de forma similar a los ejercicios anteriores, convirtiendo los datos a JSON y mostrando el resultado.
+
+**Resultado:**
+```
+La consola mostrará cada objeto de los posts creados.
 ```
 
 ### Ejercicio 4: Enviar datos de un formulario
@@ -129,6 +159,16 @@ Crea un formulario simple en HTML y envía sus datos utilizando una solicitud PO
 
 // Resultado: Muestra el nuevo post creado en la consola después de enviar el formulario.
 ```
+**Explicación:**
+- Se crea un formulario HTML con campos para el título y el cuerpo del post.
+- Se agrega un event listener al formulario para manejar el evento de envío.
+- En el evento, se previene el comportamiento por defecto del formulario y se crean los datos del nuevo post a partir de los valores ingresados por el usuario.
+- Se realiza una solicitud POST como en los ejercicios anteriores.
+
+**Resultado:** 
+```
+La consola mostrará el nuevo post creado después de que se envíe el formulario.
+```
 
 ### Ejercicio 5: Crear un recurso con datos dinámicos
 Realiza una solicitud POST utilizando datos dinámicos de una API.
@@ -155,6 +195,15 @@ fetch('https://jsonplaceholder.typicode.com/users/1')
   .catch(error => console.error('Error:', error));
 
 // Resultado: Muestra el nuevo post con el nombre del usuario como contenido.
+```
+**Explicación:**
+- Se realiza una solicitud GET para obtener un usuario específico.
+- En la respuesta, se crea un nuevo post utilizando el nombre y el ID del usuario obtenido.
+- Se realiza una solicitud POST con los datos del nuevo post.
+
+**Resultado:**
+```
+La consola mostrará el nuevo post creado, con el nombre del usuario como parte del contenido.
 ```
 
 ### Ejercicio 6: Realizar una solicitud POST y actualizar el DOM
@@ -185,6 +234,16 @@ Realiza una solicitud POST y muestra el resultado en un elemento del DOM.
 
 // Resultado: Muestra "Created Post: New Post for DOM" en el elemento con ID "result".
 ```
+**Explicación:**
+- Se define un elemento ```<div>``` con el ID ```result``` para mostrar el resultado.
+- Se realiza una solicitud POST para crear un nuevo post.
+- Una vez creada, se actualiza el contenido del div con el título del nuevo post.
+
+**Resultado:**
+```
+El div mostrará "Created Post: New Post for DOM".
+```
+
 
 ### Ejercicio 7: Enviar datos anidados en un objeto
 Realiza una solicitud POST con un objeto que contiene datos anidados.
@@ -210,6 +269,15 @@ fetch('https://jsonplaceholder.typicode.com/comments', {
   .catch(error => console.error('Error:', error));
 
 // Resultado: Muestra el nuevo comentario con ID asignado y detalles anidados.
+```
+**Explicación:**
+- Se crea un objeto ```newComment``` con un post ID y un comentario anidado.
+- Se realiza una solicitud POST para crear un nuevo comentario en la API.
+- La respuesta se convierte a JSON y se muestra en la consola.
+
+**Resultado:**
+```
+La consola mostrará el nuevo comentario creado con detalles anidados.
 ```
 
 ### Ejercicio 8: Enviar archivos mediante POST
@@ -242,5 +310,17 @@ Crea un formulario para subir archivos y envía el archivo seleccionado a travé
 // Resultado: Muestra la respuesta del servidor tras la subida del archivo.
 
 ```
+
+**Explicación:**
+- Se crea un formulario HTML para la carga de archivos.
+- Se agrega un event listener al formulario para manejar el envío.
+- Se utiliza FormData para enviar el archivo seleccionado.
+- Se realiza una solicitud POST para cargar el archivo.
+
+**Resultado:**
+```
+Muestra la respuesta del servidor tras la subida del archivo.
+```
+
 ## Conclusión
 Estos ejercicios muestran cómo realizar solicitudes POST utilizando la Fetch API para enviar datos al servidor, desde la creación básica de un post hasta el envío de formularios y archivos. Con esta práctica, puedes entender mejor cómo interactuar con APIs y manejar datos en aplicaciones web.

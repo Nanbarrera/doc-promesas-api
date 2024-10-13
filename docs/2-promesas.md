@@ -55,6 +55,13 @@ promesa.then((resultado) => console.log(resultado));
 // Resultado: "Promesa cumplida después de 2 segundos"
 ```
 
+**Explicación:** La promesa se resuelve (cumple) después de 2 segundos, mostrando un mensaje en la consola.
+
+**Resultado esperado:**
+```
+Promesa cumplida después de 2 segundos
+```
+
 ### Ejercicio 2: Promesa rechazada
 Crea una promesa que rechace con un error después de 3 segundos.
 ```javascript
@@ -65,6 +72,14 @@ const promesa = new Promise((resolve, reject) => {
 promesa.catch((error) => console.log(error.message));
 // Resultado: "Error después de 3 segundos"
 ```
+**Explicación:** Esta promesa se rechaza tras 3 segundos, lanzando un error que es capturado en el método ```.catch()```.
+
+**Resultado esperado:**
+```
+Error después de 3 segundos
+```
+
+
 
 ### Ejercicio 3: Uso de .finally()
 Crea una promesa que simule una operación y use .finally() para ejecutar código después de que se cumpla o rechace.
@@ -79,6 +94,13 @@ promesa
 // Resultado: "Operación completada"
 // Resultado: "Operación finalizada"
 ```
+**Explicación:** Después de 1 segundo, la promesa se cumple y se ejecuta el bloque ```.then()```. El bloque ```.finally()``` se ejecuta sin importar si la promesa se resolvió o fue rechazada.
+
+**Resultado esperado:**
+```
+Operación completada
+Operación finalizada
+```
 
 ### Ejercicio 4: Encadenamiento de Promesas
 Realiza tres promesas encadenadas para transformar un valor inicial.
@@ -90,7 +112,12 @@ new Promise((resolve) => {
   .then((num) => num + 3)
   .then((num) => console.log(num));
 // Resultado: 13
+```
+**Explicación:** Cada ```.then()``` toma el valor anterior y lo transforma. Primero multiplica por 2, luego suma 3, y finalmente imprime el resultado. 
 
+**Resultado esperado:**
+```
+13
 ```
 
 ### Ejercicio 5: Simulando una API con Promesas
@@ -105,7 +132,11 @@ function fetchData() {
 fetchData().then((datos) => console.log(datos));
 // Resultado: { nombre: 'Juan', edad: 25 }
 ```
+**Explicación:** La función ```fetchData``` simula una llamada a una API, que retorna un objeto con datos después de 2 segundos. Resultado esperado:
 
+```
+{ nombre: 'Juan', edad: 25 }
+```
 ### Ejercicio 6: Promesas con ```reject```
 Crea una promesa que rechace si un número es impar y resuelva si es par.
 ```javascript
@@ -124,6 +155,12 @@ verificarNumeroPar(4)
   .catch((error) => console.log(error));
 // Resultado: "El número es par"
 ```
+**Explicación:** La función ```verificarNumeroPar``` resuelve la promesa si el número es par y la rechaza si es impar. En este caso, el número es par, por lo que se ejecuta el bloque ```.then()```. 
+
+**Resultado esperado:**
+```
+El número es par
+```
 
 ### Ejercicio 7: Usando ```Promise.all```
 Utiliza ```Promise.all``` para ejecutar múltiples promesas en paralelo y esperar a que todas se resuelvan.
@@ -137,6 +174,12 @@ Promise.all([promesa1, promesa2, promesa3]).then((valores) =>
 );
 // Resultado: [3, "foo", "bar"]
 ```
+**Explicación:** Promise.all espera a que todas las promesas se resuelvan y devuelve un array con los resultados de cada una. 
+
+**Resultado esperado:**
+```csharp
+[3, "foo", "bar"]
+```
 
 ### Ejercicio 8: Usando ```Promise.race```
 Utiliza ```Promise.race``` para resolver una promesa tan pronto como la primera se resuelva o rechace.
@@ -146,5 +189,10 @@ const promesa2 = new Promise((resolve) => setTimeout(resolve, 1000, "Segunda pro
 
 Promise.race([promesa1, promesa2]).then((resultado) => console.log(resultado));
 // Resultado: "Primera promesa"
+```
+**Explicación:** Promise.race devuelve la promesa que se resuelva primero. En este caso, la primera promesa se resuelve después de 500 ms, antes que la segunda, que tarda 1000 ms. 
 
+**Resultado esperado:**
+```
+Primera promesa
 ```
